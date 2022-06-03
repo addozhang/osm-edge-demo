@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cpaas.io/creator: xiegm@allinpay.com
+    cpaas.io/updated-at: '2022-05-17T06:01:24Z'
+    resource.cpaas.io/reference: '["Deployment.istio-dubbo-grpc-service"]'
+  creationTimestamp: '2022-05-17T05:52:57Z'
+  labels:
+    asm.cpaas.io/msname: istio-dubbo-grpc-service
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:resource.cpaas.io/reference: {}
+        f:spec:
+          f:ports:
+            .: {}
+            k:{"port":8088,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector:
+            .: {}
+            f:project.cpaas.io/name: {}
+            f:service.cpaas.io/name: {}
+          f:sessionAffinity: {}
+          f:sessionAffinityConfig:
+            .: {}
+            f:clientIP:
+              .: {}
+              f:timeoutSeconds: {}
+          f:type: {}
+      manager: Mozilla
+      operation: Update
+      time: '2022-05-17T05:52:57Z'
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:asm.cpaas.io/msname: {}
+      manager: manager
+      operation: Update
+      time: '2022-05-17T05:56:13Z'
+  name: istio-dubbo-grpc-service
+  namespace: sft-test-flomesh
+  resourceVersion: '83250837'
+  selfLink: /api/v1/namespaces/sft-test-flomesh/services/istio-dubbo-grpc-service
+  uid: 92071ef8-59e6-4801-8df1-e2c84d1203b4
+spec:
+  clusterIP: 10.29.0.238
+  ports:
+    - name: grpc-8088-8088
+      port: 8088
+      protocol: TCP
+      targetPort: 8088
+  selector:
+    project.cpaas.io/name: sft-test
+    service.cpaas.io/name: deployment-istio-dubbo-grpc-service
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -16,18 +16,14 @@ source .env
 # Set meaningful defaults for env vars we expect from .env
 MESH_NAME="${MESH_NAME:-osm-edge}"
 K8S_NAMESPACE="${K8S_NAMESPACE:-osm-edge-system}"
-INGRESS_PIPY_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-flomesh}"
-ECHO_CONSUMER_NAMESPACE="${ECHO_CONSUMER_NAMESPACE:-echo-consumer}"
-ECHO_DUBBO_SERVER_NAMESPACE="${ECHO_DUBBO_SERVER_NAMESPACE:-echo-dubbo-server}"
-ECHO_GRPC_SERVER_NAMESPACE="${ECHO_GRPC_SERVER_NAMESPACE:-echo-grpc-server}"
-ECHO_HTTP_SERVER_NAMESPACE="${ECHO_HTTP_SERVER_NAMESPACE:-echo-http-server}"
+TEST_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-sft-test-flomesh}"
 CERT_MANAGER="${CERT_MANAGER:-tresor}"
-CTR_REGISTRY="${CTR_REGISTRY:-localhost:5000}"
+CTR_REGISTRY="${CTR_REGISTRY:-flomesh}"
 CTR_REGISTRY_CREDS_NAME="${CTR_REGISTRY_CREDS_NAME:-acr-creds}"
 DEPLOY_TRAFFIC_SPLIT="${DEPLOY_TRAFFIC_SPLIT:-true}"
 CTR_TAG="${CTR_TAG:-$(git rev-parse HEAD)}"
 IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-Always}"
-ENABLE_DEBUG_SERVER="${ENABLE_DEBUG_SERVER:-true}"
+ENABLE_DEBUG_SERVER="${ENABLE_DEBUG_SERVER:-false}"
 ENABLE_EGRESS="${ENABLE_EGRESS:-false}"
 ENABLE_RECONCILER="${ENABLE_RECONCILER:-false}"
 DEPLOY_GRAFANA="${DEPLOY_GRAFANA:-false}"
@@ -35,9 +31,8 @@ DEPLOY_JAEGER="${DEPLOY_JAEGER:-false}"
 TRACING_ADDRESS="${TRACING_ADDRESS:-jaeger.${K8S_NAMESPACE}.svc.cluster.local}"
 ENABLE_FLUENTBIT="${ENABLE_FLUENTBIT:-false}"
 DEPLOY_PROMETHEUS="${DEPLOY_PROMETHEUS:-false}"
-SIDECAR_LOG_LEVEL="${SIDECAR_LOG_LEVEL:-debug}"
-USE_PRIVATE_REGISTRY="${USE_PRIVATE_REGISTRY:-true}"
-PUBLISH_IMAGES="${PUBLISH_IMAGES:-false}"
+SIDECAR_LOG_LEVEL="${SIDECAR_LOG_LEVEL:-error}"
+USE_PRIVATE_REGISTRY="${USE_PRIVATE_REGISTRY:-false}"
 TIMEOUT="${TIMEOUT:-300s}"
 
 # For any additional installation arguments. Used heavily in CI.
@@ -79,10 +74,6 @@ if [ "$CERT_MANAGER" = "cert-manager" ]; then
     ./demo/deploy-cert-manager.sh
 fi
 
-if [ "$PUBLISH_IMAGES" = true ]; then
-    make docker-build
-fi
-
 ./scripts/create-container-registry-creds.sh "$K8S_NAMESPACE"
 
 # Deploys Xds and Prometheus
@@ -111,7 +102,7 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       --set=osm.enableFluentbit="$ENABLE_FLUENTBIT" \
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
-      --set=osm.controllerLogLevel="trace" \
+      --set=osm.controllerLogLevel="warn" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 else
@@ -135,7 +126,7 @@ else
       --set=osm.enableFluentbit="$ENABLE_FLUENTBIT" \
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
-      --set=osm.controllerLogLevel="trace" \
+      --set=osm.controllerLogLevel="warn" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 fi

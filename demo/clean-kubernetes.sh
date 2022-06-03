@@ -6,12 +6,11 @@ set -aueo pipefail
 source .env
 
 TIMEOUT="${TIMEOUT:-90s}"
+INGRESS_PIPY_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-flomesh}"
+TEST_NAMESPACE="${TEST_NAMESPACE:-sft-test-flomesh}"
 
 osm uninstall mesh -f --mesh-name "$MESH_NAME" --osm-namespace "$K8S_NAMESPACE" --delete-namespace -a
-
-for ns in "$ECHO_CONSUMER_NAMESPACE" "$ECHO_DUBBO_SERVER_NAMESPACE" "$ECHO_GRPC_SERVER_NAMESPACE" "$ECHO_HTTP_SERVER_NAMESPACE"; do
-    kubectl delete namespace "$ns" --ignore-not-found --wait --timeout="$TIMEOUT" &
-done
+kubectl delete namespace "$TEST_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT" &
 
 # Clean up Hashicorp Vault deployment
 kubectl delete deployment vault -n "$K8S_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT" &

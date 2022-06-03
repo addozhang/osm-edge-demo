@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cpaas.io/creator: admin@allinpay.com
+    cpaas.io/updated-at: '2022-05-20T08:12:43Z'
+    pipy.ingress.kubernetes.io/rewrite-target-from: ^/httptest/?
+    pipy.ingress.kubernetes.io/rewrite-target-to: /
+  creationTimestamp: '2022-05-17T06:43:52Z'
+  generation: 9
+  managedFields:
+    - apiVersion: extensions/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:pipy.ingress.kubernetes.io/rewrite-target-from: {}
+            f:pipy.ingress.kubernetes.io/rewrite-target-to: {}
+        f:spec:
+          f:ingressClassName: {}
+          f:rules: {}
+      manager: Mozilla
+      operation: Update
+      time: '2022-05-17T09:33:05Z'
+  name: istio-grpc-client
+  namespace: sft-test-flomesh
+  resourceVersion: '86990062'
+  selfLink: >-
+    /apis/extensions/v1beta1/namespaces/sft-test-flomesh/ingresses/istio-grpc-client
+  uid: 99b6b0e6-f10a-460a-affb-d4ddaf5d876b
+spec:
+  ingressClassName: pipy
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: istio-grpc-client
+              servicePort: 8080
+            path: /grpctest
+            pathType: ImplementationSpecific
+          - backend:
+              serviceName: istio-http-client
+              servicePort: 8080
+            path: /httptest
+            pathType: ImplementationSpecific
+          - backend:
+              serviceName: istio-dubbo-grpc-client
+              servicePort: 8080
+            path: /dubbo-grpctest
+            pathType: ImplementationSpecific
+status:
+  loadBalancer: {}

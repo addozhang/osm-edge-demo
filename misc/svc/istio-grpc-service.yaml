@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cpaas.io/creator: xiegm@allinpay.com
+    cpaas.io/updated-at: '2022-05-17T06:03:00Z'
+    resource.cpaas.io/reference: '["Deployment.istio-grpc-service"]'
+  creationTimestamp: '2022-05-17T05:47:59Z'
+  labels:
+    asm.cpaas.io/msname: istio-grpc-service
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:resource.cpaas.io/reference: {}
+        f:spec:
+          f:ports:
+            .: {}
+            k:{"port":9898,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector:
+            .: {}
+            f:project.cpaas.io/name: {}
+            f:service.cpaas.io/name: {}
+          f:sessionAffinity: {}
+          f:sessionAffinityConfig:
+            .: {}
+            f:clientIP:
+              .: {}
+              f:timeoutSeconds: {}
+          f:type: {}
+      manager: Mozilla
+      operation: Update
+      time: '2022-05-17T05:48:05Z'
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:asm.cpaas.io/msname: {}
+      manager: manager
+      operation: Update
+      time: '2022-05-17T05:48:54Z'
+  name: istio-grpc-service
+  namespace: sft-test-flomesh
+  resourceVersion: '83252326'
+  selfLink: /api/v1/namespaces/sft-test-flomesh/services/istio-grpc-service
+  uid: 38237810-153f-4a27-8d31-b762598f6147
+spec:
+  clusterIP: 10.29.0.197
+  ports:
+    - name: grpc-9898-9898
+      port: 9898
+      protocol: TCP
+      targetPort: 9898
+  selector:
+    project.cpaas.io/name: sft-test
+    service.cpaas.io/name: deployment-istio-grpc-service
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  type: ClusterIP
+status:
+  loadBalancer: {}

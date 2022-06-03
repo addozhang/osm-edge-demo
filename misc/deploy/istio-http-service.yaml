@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.cpaas.io/last-replicas: '1'
+    cpaas.io/creator: xiegm@allinpay.com
+  name: istio-http-service
+  namespace: sft-test-flomesh
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      project.cpaas.io/name: sft-test
+      service.cpaas.io/name: deployment-istio-http-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cpaas.io/creator: xiegm@allinpay.com
+      creationTimestamp: null
+      labels:
+        app: istio-http-service
+        project.cpaas.io/name: sft-test
+        service.cpaas.io/name: deployment-istio-http-service
+    spec:
+      containers:
+        - env:
+            - name: USER_PORT
+              value: '8088'
+          image: localhost:5000/istio-http-service:latest
+          imagePullPolicy: IfNotPresent
+          name: istio-http-service
+          ports:
+            - containerPort: 8088
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '0.4'
+              memory: 400Mb
+            requests:
+              cpu: '0.4'
+              memory: 400Mb
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

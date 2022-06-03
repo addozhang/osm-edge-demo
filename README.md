@@ -6,7 +6,7 @@ https://github.com/flomesh-io/osm-edge/releases/tag/v1.1.0
 ## 下载demo工程
 
 ```
-git clone https://github.com/cybwan/osm-edge-demo.git
+git clone https://github.com/cybwan/osm-edge-demo.git -b sft-test
 cd osm-edge-demo
 ```
 
@@ -38,9 +38,13 @@ export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 127.0.0.1调整为ingress所在node的ip
 
 ```
-curl -i http://127.0.0.1:80/httpEcho
-curl -i http://127.0.0.1:80/grpcEcho
-curl -i http://127.0.0.1:80/dubboEcho
+#http
+curl -i http://127.0.0.1:80/hi?name=tom
+#grpc
+curl -i http://127.0.0.1:80/hello?name=tom
+#nubbo grpc
+curl -i http://127.0.0.1:80/dubbo/hello?name=tom
+curl -i http://127.0.0.1:80/dubbo/getAge?name=tom
 ```
 
 ## 卸载

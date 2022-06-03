@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cpaas.io/creator: xiegm@allinpay.com
+  labels:
+    asm.cpaas.io/msname: istio-http-service
+  name: istio-http-service
+  namespace: sft-test-flomesh
+spec:
+  ports:
+    - name: http-8088-8088
+      port: 8088
+      protocol: TCP
+      targetPort: 8088

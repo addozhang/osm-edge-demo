@@ -1,0 +1,168 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    cpaas.io/creator: xiegm@allinpay.com
+    cpaas.io/updated-at: '2022-06-02T10:04:16Z'
+    deployment.kubernetes.io/revision: '4'
+  creationTimestamp: '2022-05-17T05:45:13Z'
+  generation: 8
+  managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector:
+            f:matchLabels:
+              .: {}
+              f:project.cpaas.io/name: {}
+              f:service.cpaas.io/name: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:labels:
+                .: {}
+                f:project.cpaas.io/name: {}
+                f:service.cpaas.io/name: {}
+            f:spec:
+              f:containers:
+                k:{"name":"istio-grpc-service"}:
+                  .: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:ports:
+                    .: {}
+                    k:{"containerPort":9898,"protocol":"TCP"}:
+                      .: {}
+                      f:containerPort: {}
+                      f:hostPort: {}
+                      f:protocol: {}
+                  f:resources:
+                    .: {}
+                    f:limits:
+                      .: {}
+                      f:cpu: {}
+                      f:memory: {}
+                    f:requests:
+                      .: {}
+                      f:cpu: {}
+                      f:memory: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+      manager: Mozilla
+      operation: Update
+      time: '2022-05-17T05:46:33Z'
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          f:template:
+            f:metadata:
+              f:labels:
+                f:app: {}
+      manager: manager
+      operation: Update
+      time: '2022-05-17T05:48:54Z'
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            k:{"type":"Progressing"}:
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      manager: kube-controller-manager
+      operation: Update
+      time: '2022-05-17T06:26:56Z'
+  name: istio-grpc-service
+  namespace: sft-test-flomesh
+  resourceVersion: '102719139'
+  selfLink: /apis/apps/v1/namespaces/sft-test-flomesh/deployments/istio-grpc-service
+  uid: 56f7b4ab-8b36-47b0-a417-608834a275ca
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      project.cpaas.io/name: sft-test
+      service.cpaas.io/name: deployment-istio-grpc-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cpaas.io/creator: xiegm@allinpay.com
+      creationTimestamp: null
+      labels:
+        app: istio-grpc-service
+        project.cpaas.io/name: sft-test
+        service.cpaas.io/name: deployment-istio-grpc-service
+    spec:
+      containers:
+        - image: harbor02.sjzx.com/sftdev/istio-grpc-service:2022051101
+          imagePullPolicy: IfNotPresent
+          name: istio-grpc-service
+          ports:
+            - containerPort: 9898
+              hostPort: 9898
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '4'
+              memory: 4Gi
+            requests:
+              cpu: '4'
+              memory: 4Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+    - lastTransitionTime: '2022-05-17T05:45:13Z'
+      lastUpdateTime: '2022-05-17T05:45:13Z'
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2022-05-17T05:45:13Z'
+      lastUpdateTime: '2022-05-17T06:03:02Z'
+      message: ReplicaSet "istio-grpc-service-6ff7cdbf56" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+  observedGeneration: 8
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
