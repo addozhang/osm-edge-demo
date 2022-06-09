@@ -66,7 +66,7 @@ kubectl apply -f - <<EOF
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: pipy-echo-ingress
+  name: pipy-ingress
   namespace: $TEST_NAMESPACE
 spec:
   ingressClassName: pipy
@@ -98,7 +98,7 @@ spec:
 kind: IngressBackend
 apiVersion: policy.openservicemesh.io/v1alpha1
 metadata:
-  name: pipy-echo-ingress-backend
+  name: pipy-ingress-backend
   namespace: $TEST_NAMESPACE
 spec:
   backends:
