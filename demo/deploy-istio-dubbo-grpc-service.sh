@@ -73,7 +73,7 @@ spec:
             - name: user-port
               containerPort: 8088
               protocol: TCP
-          command: ["/usr/lib/jvm/default-jvm/bin/java"]
+          command: ["/usr/local/jdk1.8.0_201/bin/java"]
           args: ["-jar","/jar/dubbo-svc-1.0.0.jar"]
           env:
             - name: IDENTITY

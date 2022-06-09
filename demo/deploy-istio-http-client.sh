@@ -73,7 +73,7 @@ spec:
             - name: user-port
               containerPort: 8080
               protocol: TCP
-          command: ["/usr/lib/jvm/default-jvm/bin/java"]
+          command: ["/usr/local/jdk1.8.0_201/bin/java"]
           args: ["-jar","/jar/dubbo-consumer.jar","-XX:InitialRAMPercentage=80.0","-XX:MaxRAMPercentage=80.0","-XX:MaxMetaspaceSize=100m"]
           env:
             - name: IDENTITY
