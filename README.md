@@ -30,7 +30,7 @@ export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 ## 打开ingress端口转发
 
 ```
-./scripts/port-forward-echo-ingress-pipy.sh
+./scripts/port-forward-istio-ingress-pipy.sh
 ```
 
 ## 测试 
