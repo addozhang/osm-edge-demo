@@ -37,7 +37,7 @@ spec:
   ports:
   - port: 9898
     name: user-port
-    appProtocol: tcp
+    appProtocol: grpc
   selector:
     app: $SVC
 EOF
