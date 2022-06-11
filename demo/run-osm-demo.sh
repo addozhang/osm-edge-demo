@@ -103,7 +103,7 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="debug" \
-      --set=osm.sidecarImage=flomesh/pipy-nightly:202206070349 \
+      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 else
@@ -128,7 +128,7 @@ else
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="debug" \
-      --set=osm.sidecarImage="flomesh/pipy-nightly:202206070349" \
+      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 fi

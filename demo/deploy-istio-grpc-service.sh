@@ -73,7 +73,7 @@ spec:
             - name: user-port
               containerPort: 9898
               protocol: TCP
-          command: ["/usr/local/jdk1.8.0_201/bin/java"]
+          command: ["java"]
           args: ["-jar","/jar/grpc-server-1.0.0-SNAPSHOT.jar"]
           env:
             - name: IDENTITY

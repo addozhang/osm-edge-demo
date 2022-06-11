@@ -73,7 +73,7 @@ spec:
             - name: user-port
               containerPort: 8080
               protocol: TCP
-          command: ["/usr/local/jdk1.8.0_201/bin/java"]
+          command: ["java"]
           args: ["-Xmx2g","-jar","/jar/grpc-client-1.0.0-SNAPSHOT.jar","-XX:InitialRAMPercentage=80.0","-XX:MaxRAMPercentage=80.0","-XX:MaxMetaspaceSize=100m "]
           env:
             - name: IDENTITY
