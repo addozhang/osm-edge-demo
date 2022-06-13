@@ -35,7 +35,7 @@ DEPLOY_JAEGER="${DEPLOY_JAEGER:-false}"
 TRACING_ADDRESS="${TRACING_ADDRESS:-jaeger.${K8S_NAMESPACE}.svc.cluster.local}"
 ENABLE_FLUENTBIT="${ENABLE_FLUENTBIT:-false}"
 DEPLOY_PROMETHEUS="${DEPLOY_PROMETHEUS:-false}"
-SIDECAR_LOG_LEVEL="${SIDECAR_LOG_LEVEL:-debug}"
+SIDECAR_LOG_LEVEL="${SIDECAR_LOG_LEVEL:-error}"
 USE_PRIVATE_REGISTRY="${USE_PRIVATE_REGISTRY:-true}"
 PUBLISH_IMAGES="${PUBLISH_IMAGES:-false}"
 TIMEOUT="${TIMEOUT:-300s}"
@@ -50,7 +50,7 @@ exit_error() {
 }
 
 # Check if Docker daemon is running
-docker info > /dev/null || { echo "Docker daemon is not running"; exit 1; }
+# docker info > /dev/null || { echo "Docker daemon is not running"; exit 1; }
 
 # cleanup stale resources from previous runs
 ./demo/clean-kubernetes.sh
@@ -145,3 +145,5 @@ fi
 ./demo/configure-app-namespaces.sh
 
 ./demo/deploy-apps.sh
+
+./demo/expose-prometheus-grafana.sh

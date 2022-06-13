@@ -38,9 +38,9 @@ export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 127.0.0.1调整为ingress所在node的ip
 
 ```
-curl -i http://127.0.0.1:80/httpEcho
-curl -i http://127.0.0.1:80/grpcEcho
-curl -i http://127.0.0.1:80/dubboEcho
+curl -i http://127.0.0.1:81/httpEcho
+curl -i http://127.0.0.1:81/grpcEcho
+curl -i http://127.0.0.1:81/dubboEcho
 ```
 
 ## 卸载

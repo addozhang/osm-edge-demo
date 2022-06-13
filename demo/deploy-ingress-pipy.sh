@@ -37,7 +37,7 @@ kubectl patch deployment -n "$INGRESS_PIPY_NAMESPACE" ingress-pipy -p \
             "ports": [
               {
                 "containerPort": 8000,
-                "hostPort": 80,
+                "hostPort": 81,
                 "name": "ingress",
                 "protocol": "TCP"
               }
