@@ -11,4 +11,5 @@ source .env
 ./demo/deploy-istio-grpc-client.sh
 ./demo/deploy-istio-dubbo-grpc-service.sh
 ./demo/deploy-istio-dubbo-grpc-client.sh
-./demo/deploy-istio-ingress-pipy.sh
+# ./demo/deploy-istio-ingress-pipy.sh
+./demo/deploy-istio-ingress-nginx.sh

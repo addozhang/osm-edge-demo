@@ -39,12 +39,12 @@ export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 
 ```
 #http
-curl -i http://127.0.0.1:80/hi?name=tom
+curl -i http://127.0.0.1:81/hi?name=tom
 #grpc
-curl -i http://127.0.0.1:80/hello?name=tom
+curl -i http://127.0.0.1:81/hello?name=tom
 #nubbo grpc
-curl -i http://127.0.0.1:80/dubbo/hello?name=tom
-curl -i http://127.0.0.1:80/dubbo/getAge?name=tom
+curl -i http://127.0.0.1:81/dubbo/hello?name=tom
+curl -i http://127.0.0.1:81/dubbo/getAge?name=tom
 ```
 
 ## 卸载

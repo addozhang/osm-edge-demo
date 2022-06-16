@@ -9,6 +9,8 @@ TIMEOUT="${TIMEOUT:-90s}"
 INGRESS_PIPY_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-flomesh}"
 TEST_NAMESPACE="${TEST_NAMESPACE:-sft-test-flomesh}"
 
+helm uninstall fsm --namespace "$INGRESS_PIPY_NAMESPACE" || true
+
 osm uninstall mesh -f --mesh-name "$MESH_NAME" --osm-namespace "$K8S_NAMESPACE" --delete-namespace -a
 kubectl delete namespace "$TEST_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT" &
 
